@@ -14,6 +14,6 @@ class Masakan extends Model
 
     public function detailPesanan()
     {
-        $this->belongsTo(DetailPesanan::class);
+        return $this->belongsTo(DetailPesanan::class);
     }
 }

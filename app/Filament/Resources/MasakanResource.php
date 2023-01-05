@@ -6,6 +6,7 @@ use App\Filament\Resources\MasakanResource\Pages;
 use App\Filament\Resources\MasakanResource\RelationManagers;
 use App\Models\Masakan;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -26,17 +27,27 @@ class MasakanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_masakan')
-                    ->required()
-                    ->maxLength(50),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status_masakan')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('harga')
-                    ->required(),
+                Card::make()->schema([
+                    Forms\Components\TextInput::make('nama_masakan')
+                        ->required()
+                        ->unique()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('type')
+                        ->required()
+                        ->options([
+                            "makanan" => 'Makanan',
+                            "minuman" => 'Minuman',
+                        ]),
+                    Forms\Components\Select::make('status_masakan')
+                        ->required()
+                        ->options([
+                            "tersedia" => 'Tersedia',
+                            "habis" => 'Habis',
+                        ]),
+                    Forms\Components\TextInput::make('harga')
+                        ->numeric()
+                        ->required(),
+                ])->columns(2)
             ]);
     }
 
@@ -44,20 +55,27 @@ class MasakanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_masakan'),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('status_masakan'),
-                Tables\Columns\TextColumn::make('harga'),
+                Tables\Columns\TextColumn::make('nama_masakan')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status_masakan')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('harga')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

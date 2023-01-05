@@ -4,8 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PesananResource\Pages;
 use App\Filament\Resources\PesananResource\RelationManagers;
+use App\Models\Meja;
 use App\Models\Pesanan;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -26,23 +29,41 @@ class PesananResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_user')
-                    ->required(),
-                Forms\Components\TextInput::make('no_meja')
-                    ->required(),
-                Forms\Components\DatePicker::make('tanggal_pesanan')
-                    ->required(),
-                Forms\Components\TextInput::make('total_harga')
-                    ->required(),
-                Forms\Components\TextInput::make('bayar')
-                    ->required(),
-                Forms\Components\TextInput::make('kembali')
-                    ->required(),
-                Forms\Components\Toggle::make('status_pesanan')
-                    ->required(),
-                Forms\Components\TextInput::make('status_makanan_pesanan')
-                    ->required()
-                    ->maxLength(255),
+                Card::make()->schema([
+                    Forms\Components\Select::make('id_user')
+                        ->label('User')
+                        ->options(User::all()->pluck('name', 'id'))
+                        ->searchable()
+                        ->required(),
+                    Forms\Components\Select::make('id_meja')
+                        ->label('Masakan')
+                        ->options(Meja::all()->pluck('name', 'id'))
+                        ->searchable()
+                        ->required(),
+                    Forms\Components\DateTimePicker::make('tanggal_pesanan')
+                        ->required(),
+                    Forms\Components\TextInput::make('total_harga')
+                        ->numeric()
+                        ->required(),
+                    Forms\Components\TextInput::make('bayar')
+                        ->numeric()
+                        ->required(),
+                    Forms\Components\TextInput::make('kembali')
+                        ->numeric()
+                        ->required(),
+                    Forms\Components\Toggle::make('status_pesanan')
+                        ->required(),
+                    Forms\Components\Select::make('status_makanan_pesanan')
+                        ->label('Status Pesanan')
+                        ->searchable()
+                        ->options([
+                            'sedang diproses' => 'Sedang Diproses',
+                            'siap antar' => 'Siap Antar',
+                            'telah tersaji' => 'Telah Tersaji',
+                            'telah dibawa pulang' => 'Telah Dibawa Pulang',
+                        ])
+                        ->required(),
+                ])->columns(2)
             ]);
     }
 
@@ -50,26 +71,36 @@ class PesananResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_user'),
-                Tables\Columns\TextColumn::make('no_meja'),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('meja.name')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('tanggal_pesanan')
-                    ->date(),
-                Tables\Columns\TextColumn::make('total_harga'),
-                Tables\Columns\TextColumn::make('bayar'),
-                Tables\Columns\TextColumn::make('kembali'),
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_harga')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('bayar')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kembali')
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('status_pesanan')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('status_makanan_pesanan'),
+                Tables\Columns\TextColumn::make('status_makanan_pesanan')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

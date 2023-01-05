@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('masakan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_masakan', 50);
-            $table->string('type');
-            $table->string('status_masakan');
-            // $table->enum('type', ['makanan', 'minuman']);
-            // $table->enum('status_masakan', ['tersedia', 'habis']);
+            $table->string('nama_masakan')->unique();
+            // $table->string('type');
+            // $table->string('status_masakan');
+            $table->enum('type', ['makanan', 'minuman']);
+            $table->enum('status_masakan', ['tersedia', 'habis']);
             $table->integer('harga');
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('masakans');
+        Schema::dropIfExists('masakan');
     }
 };

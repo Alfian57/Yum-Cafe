@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('meja', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('status_meja');
-            // $table->enum('status_meja', ['kosong', 'penuh']);
+            $table->string('name')->unique();
+            // $table->string('status_meja');
+            $table->enum('status_meja', ['kosong', 'penuh']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mejas');
+        Schema::dropIfExists('meja');
     }
 };

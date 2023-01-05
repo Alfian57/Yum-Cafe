@@ -14,11 +14,11 @@ class DetailPesanan extends Model
 
     public function pesanan()
     {
-        $this->belongsTo(Pesanan::class);
+        return $this->belongsTo(Pesanan::class);
     }
 
     public function masakan()
     {
-        $this->belongsTo(Masakan::class);
+        return $this->belongsTo(Masakan::class);
     }
 }

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('qty');
             $table->integer('sub_total');
             $table->text('keterangan_pesanan');
-            $table->string('status_detail_masakan');
-            // $table->enum('status_detail_masakan', ['dimasak', 'sudah siap']);
+            // $table->string('status_detail_masakan');
+            $table->enum('status_detail_masakan', ['dimasak', 'sudah siap']);
             $table->timestamps();
 
             $table->foreign('id_pesanan')->references('id')->on('pesanan')->cascadeOnDelete();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_pesanans');
+        Schema::dropIfExists('detail_pesanan');
     }
 };

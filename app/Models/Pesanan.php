@@ -18,16 +18,16 @@ class Pesanan extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function meja()
     {
-        $this->belongsTo(Meja::class);
+        return $this->belongsTo(Meja::class);
     }
 
     public function detailPesanan()
     {
-        $this->hasMany(DetailPesanan::class);
+        return $this->hasMany(DetailPesanan::class);
     }
 }
