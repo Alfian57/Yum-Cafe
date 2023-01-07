@@ -7,10 +7,12 @@ use App\Filament\Resources\MasakanResource\RelationManagers;
 use App\Models\Masakan;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -47,6 +49,9 @@ class MasakanResource extends Resource
                     Forms\Components\TextInput::make('harga')
                         ->numeric()
                         ->required(),
+                    SpatieMediaLibraryFileUpload::make('image')
+                        ->image()
+                        ->required()
                 ])->columns(2)
             ]);
     }
@@ -66,6 +71,7 @@ class MasakanResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('harga')
                     ->sortable(),
+                SpatieMediaLibraryImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
