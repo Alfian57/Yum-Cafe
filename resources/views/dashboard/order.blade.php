@@ -6,9 +6,9 @@
             {{-- MainContent --}}
             <div class="col-md-9 p-3" id="main-content">
                 <div class="d-inline-block w-100">
-                    <h2 class="d-inline-block">
-                        @include('components.sidebar-trigger') Daftar Menu
-                    </h2>
+                    <div class="d-inline-block">
+                        <img src="/img/logo.png" alt="Logo" class="img-fluid logo">
+                    </div>
                     <div class="d-md-inline-block d-none float-end w-50">
                         <input type="text" class="form-control rounded-search w-100" placeholder="Search...">
                     </div>
@@ -130,7 +130,7 @@
 
             {{-- Order --}}
             <div class="col-md-3 side-content p-3">
-                <h2 class="pb-2">Pesanan Anda</h2>
+                <h2 class="pb-4 pt-1 text-center">Pesanan Anda</h2>
                 <hr>
 
                 {{-- Order 1 --}}
