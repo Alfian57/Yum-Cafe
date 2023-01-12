@@ -28,6 +28,7 @@ class DetailPesananResource extends Resource
     public static function form(Form $form): Form
     {
         $pesanan = Pesanan::join('users', 'pesanan.id_user', '=', 'users.id')->get();
+        $data = null;
 
         foreach ($pesanan as $item) {
             $data = [

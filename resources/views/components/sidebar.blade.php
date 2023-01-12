@@ -5,7 +5,6 @@
         </a>
     </div>
     <div class="side-inner">
-
         <div class="profile">
             <img src="/img/person_profile.jpg" alt="Image" class="img-fluid">
             <h3 class="name">Alfian Gading</h3>

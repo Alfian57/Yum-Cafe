@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.order');
+    return view('dashboard.test');
 });
 
 Route::get('/test', function () {
-    return view('components.sidebar');
+    return view('test');
 });
+
+Route::get('/pesanan', [PesananController::class, 'index']);
