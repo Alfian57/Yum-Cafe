@@ -21,7 +21,7 @@ class PesananResource extends Resource
     protected static ?string $model = Pesanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationGroup = 'System Management';
+    protected static ?string $navigationGroup = 'Order Management';
     protected static ?string $navigationLabel = 'Pesanan';
     protected static ?int $navigationSort = 1;
 

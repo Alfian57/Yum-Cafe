@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #faf5ff;
+  }
+
+.navbar-nav li a{
+    color: #181818 !important;
+}
+.navbar-nav li a:hover{
+  color: rgb(176 145 9) !important;
+}
+.bg-purple{
+  background: rgb(176 145 9) !important;
+}
+.btn-purple{
+  background: rgb(176 145 9) !important;
+  color: #fff !important;
+}
+.btn-purple:hover{
+  background: #fff !important;
+  color: rgb(176 145 9) !important;
+  border: 1px solid #7952b344;
+}
+.btn-purple-light{
+  background: #fff !important;
+  color: rgb(176 145 9) !important;
+  border: 1px solid #7952b344;
+}
+.btn-purple-light:hover{
+  background: rgb(176 145 9) !important;
+  color: #fff !important;
+  border: 1px solid rgb(176 145 9);
+}
+.thead-purple{
+  background: rgb(176 145 9) !important;
+  color: #fff !important;
+}
+.text-purple{
+  color: rgb(176 145 9) !important;
+}
+.form-control-user{
+  border-radius: 50px;
+}
+.border-0{
+  border: 0px !important;
+}
+.bg-0{
+  background: transparent !important;
+}
+
+.navbar-nav li a.putih{
+  color: #f1f8ff !important;
+}
+.navbar-nav li a.putih:hover{
+  color: #ffffff !important;
+}
+
+/* ==================================== */
+
+.btn-group-xs>.btn,
+.btn-xs {
+    padding: .25rem .4rem;
+    font-size: .875rem;
+    line-height: .5;
+    border-radius: .2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgb(17 26 104 / 10%);
+}
+
+.card-header {
+    border-radius: 15px 15px 0px 0px !important;
+}
+
+.form-control {
+    border-radius: 15px;
+}
+
+.btn {
+    border-radius: 15px;
+}
+
+button.buttons-html5 {
+    padding: .25rem .4rem !important;
+    font-size: .875rem !important;
+    line-height: .5 !important;
+}

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.test');
+    return view('customer.index');
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::group(['prefix' => 'employee'], function () {
+    Route::get('/', function () {
+        return view('employee.index');
+    });
 });
-
-Route::get('/pesanan', [PesananController::class, 'index']);
